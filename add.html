@@ -10,7 +10,7 @@
     </head>
     <body>
     <form action="" method="post">
-        <div class="weui-toptips weui-toptips_warn js_tooltips" style="display:block;">数据不能为空</div>
+        <div class="weui-toptips weui-toptips_warn js_tooltips" style="display:none;">数据不能为空</div>
         <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">新闻标题:</label></div>
                 <div class="weui-cell__bd">
@@ -26,7 +26,7 @@
         <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">发布作者:</label></div>
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="text" placeholder="请输入发布作者"  name="title" value="" id="title">
+                    <input class="weui-input" type="text" placeholder="请输入发布作者"  name="author" value="" id="author">
                 </div>
         </div>
         <div class="weui-cell">
@@ -35,7 +35,7 @@
         <div class="weui-cells weui-cells_form" style="margin-top: -5px;">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入新闻发布内容" rows="3"></textarea>
+                    <textarea class="weui-textarea" placeholder="请输入新闻发布内容" rows="3" name="content" id="content"></textarea>
                     <div class="weui-textarea-counter"><span>0</span>/200</div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             </span>
         </label>
         <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary" href="" id="showTooltips">确认发布</a>
+          <a class="weui-btn weui-btn_primary" href="list.html"  id="showTooltips">确认发布</a>
         </div>
     </form>
     </body>
@@ -56,26 +56,43 @@
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
     <script type="text/javascript">
-     var $tooltips = $('.js_tooltips');
-     console.log("12345");
-     $('#showTooltips').on('click', function() {
-      var title = $("#title").val();
-      // console.log("12345");
-  });
-      // if($tooltips.css('display') != 'none') {
-      //               return;
-      //           }
-      //           // toptips的fixed, 如果有`animation`, `position: fixed`不生效
-      //           $('.page.cell').removeClass('slideIn');
-      //           setTimeout(function() {
-      //               $tooltips.css('display', 'none');
-      //           }, 2000);
-      //           if(!title) {
-      //               $tooltips.css('display', 'block');
-      //               $tooltips.html("真实姓名不能为空");
-      //               return false;
-      //           }
-      // }
+    $(function() {
+      var $tooltips = $('.js_tooltips');
+      $('#showTooltips').on('click', function() {
+        var title = $("#title").val();
+        var time=$("#time").val();
+        var author=$("#author").val();
+        var content=$("#content").val();
+        if($tooltips.css('display') != 'none') {
+          return;
+        }
+        // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+        $('.page.cell').removeClass('slideIn');
+        setTimeout(function() {
+          $tooltips.css('display', 'none');
+        }, 2000);
+        if(!title) {
+          $tooltips.css('display', 'block');
+          $tooltips.html("新闻标题不能为空");
+          return false;
+        }
+        if(!time) {
+          $tooltips.css('display', 'block');
+          $tooltips.html("发布时间不能为空");
+          return false;
+        }
+        if(!author){
+          $tooltips.css('display','block');
+          $tooltips.html("发布作者不能为空");
+          return false;
+        }
+        if(!content){
+          $tooltips.css('display','block');
+          $tooltips.html("发布内容不能为空");
+          return false;
+        }
+      });
 
-    </script>
+    });
+  </script>
     </html>
