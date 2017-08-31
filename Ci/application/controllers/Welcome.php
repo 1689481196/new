@@ -25,8 +25,9 @@ class Welcome extends CI_Controller {
 	}
 
 
-  public function add(){
-
-  }
+  	public function add(){
+  		// echo "hello word!!";
+  		// $this->load->view('welcome_message);
+  	}
 
 }
